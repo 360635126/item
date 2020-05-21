@@ -26,8 +26,7 @@
   "Aibot_小车类.RGB_Car_Program|block": "七彩流水灯",
   "Aibot_小车类.Music_Car|block": "Aibot小车播放音乐|%index",
   "Aibot_小车类.Line_Sensor|block": "巡线传感器|检测到 %direct|为 %value",
-  
-  "Aibot_小车类.Servo_Car|block": "小车舵机|编号 %num|角度 %value",
+  "Aibot_小车类.AloneCtrlSpeed|block": "单独电机|%index|速度 %speed",
   "Aibot_小车类.CarCtrl|block": "控制Aibot小车|%index",
   "Aibot_小车类.CarCtrlSpeed|block": "控制Aibot小车|%index|速度 %speed"
 }
