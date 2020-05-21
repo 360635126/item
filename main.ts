@@ -10,6 +10,155 @@ load dependency
 //% color="#C814B8" weight=25 icon="\uf1d4"
 namespace Aibot_显示类 {
     
+    // export enum enColor {
+
+    //     //% blockId="OFF" block="灭"
+    //     OFF = 0,
+    //     //% blockId="Red" block="红色"
+    //     Red,
+    //     //% blockId="Green" block="绿色"
+    //     Green,
+    //     //% blockId="Blue" block="蓝色"
+    //     Blue,
+    //     //% blockId="White" block="白色"
+    //     White,
+    //     //% blockId="Cyan" block="青色"
+    //     Cyan,
+    //     //% blockId="Pinkish" block="品红"
+    //     Pinkish,
+    //     //% blockId="Green" block="黄色"
+    //     Yellow,
+
+    // }
+    // export enum enLED1 {
+        
+    //     //% blockId="OFF" block="灭"
+    //     OFF = 0,
+    //     //% blockId="ON" block="亮"
+    //     ON =1
+    // }
+
+    // //% blockId=cbit_LED1 block="LED灯|引脚 %pin|状态 %value"
+    // //% weight=5
+    // //% blockGap=8
+    // //% color="#C814B8"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=1
+    // export function LED1(pin: DigitalPin, value: enLED1): void {
+
+    //     pins.digitalWritePin(pin, value);
+
+    // }
+
+    // //% blockId=cbit_LED2 block="LED灯|引脚 %pin|亮度 %value"
+    // //% weight=4
+    // //% blockGap=8
+    // //% color="#C814B8"
+    // //% value.min=0 value.max=255
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
+    // export function LED2(pin: AnalogPin, value: number): void {
+
+    //     pins.analogWritePin(pin, value * 1024 / 256);
+
+    // }
+
+    // //% blockId=cbit_BreathLED block="呼吸灯|引脚 %pin"
+    // //% weight=3
+    // //% blockGap=8
+    // //% color="#C814B8"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=3
+    // export function BreathLED(pin: AnalogPin): void {
+
+    //     for (let i: number = 0; i < 1023; i++) {
+    //         pins.analogWritePin(pin, i);
+    //         //basic.pause(1);
+    //         control.waitMicros(1000);
+    //     }
+    //     basic.pause(10);
+    //     for (let i: number = 1023; i > 0; i--) {
+    //         pins.analogWritePin(pin, i);
+    //         //basic.pause(1);
+    //         control.waitMicros(1000);
+    //     }
+
+    // }
+
+    // //% blockId=cbit_RGB block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|红色 %value1|绿色 %value2|蓝色 %value3"
+    // //% weight=2
+    // //% blockGap=8
+    // //% color="#C814B8"
+    // //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function RGB(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value1: number, value2: number, value3: number): void {
+
+    //     pins.analogWritePin(pin1, value1 * 1024 / 256);
+    //     pins.analogWritePin(pin2, value2 * 1024 / 256);
+    //     pins.analogWritePin(pin3, value3 * 1024 / 256);
+
+    // }
+    // //% blockId=cbit_RGB2 block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|显示 %value"
+    // //% weight=1
+    // //% blockGap=8
+    // //% color="#C814B8"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function RGB2(pin1: DigitalPin, pin2: DigitalPin, pin3: DigitalPin, value: enColor): void {
+
+    //     switch (value) {
+    //         case enColor.OFF: {
+    //             pins.digitalWritePin(pin1, 0);
+    //             pins.digitalWritePin(pin2, 0);
+    //             pins.digitalWritePin(pin3, 0);
+    //             break;
+    //         }
+    //         case enColor.Red: {
+    //             pins.digitalWritePin(pin1, 1);
+    //             pins.digitalWritePin(pin2, 0);
+    //             pins.digitalWritePin(pin3, 0);
+    //             break;
+    //         }
+    //         case enColor.Green: {
+    //             pins.digitalWritePin(pin1, 0);
+    //             pins.digitalWritePin(pin2, 1);
+    //             pins.digitalWritePin(pin3, 0);
+    //             break;
+    //         }
+    //         case enColor.Blue: {
+    //             pins.digitalWritePin(pin1, 0);
+    //             pins.digitalWritePin(pin2, 0);
+    //             pins.digitalWritePin(pin3, 1);
+    //             break;
+    //         }
+    //         case enColor.White: {
+    //             pins.digitalWritePin(pin1, 1);
+    //             pins.digitalWritePin(pin2, 1);
+    //             pins.digitalWritePin(pin3, 1);
+    //             break;
+    //         }
+    //         case enColor.Cyan: {
+    //             pins.digitalWritePin(pin1, 0);
+    //             pins.digitalWritePin(pin2, 1);
+    //             pins.digitalWritePin(pin3, 1);
+    //             break;
+    //         }
+    //         case enColor.Pinkish: {
+    //             pins.digitalWritePin(pin1, 1);
+    //             pins.digitalWritePin(pin2, 0);
+    //             pins.digitalWritePin(pin3, 1);
+    //             break;
+    //         }
+    //         case enColor.Yellow: {
+    //             pins.digitalWritePin(pin1, 1);
+    //             pins.digitalWritePin(pin2, 1);
+    //             pins.digitalWritePin(pin3, 0);
+    //             break;
+    //         }
+    //     }
+
+    // }
+    let initialized = false
+    const PCA9685_ADD = 0x41
+    const MODE1 = 0x00
+    const PRESCALE = 0xFE
+    const LED0_ON_L = 0x06
     export enum enColor {
 
         //% blockId="OFF" block="灭"
@@ -30,129 +179,112 @@ namespace Aibot_显示类 {
         Yellow,
 
     }
-    export enum enLED1 {
-        
-        //% blockId="OFF" block="灭"
-        OFF = 0,
-        //% blockId="ON" block="亮"
-        ON =1
+    function i2cwrite(addr: number, reg: number, value: number) {
+        let buf = pins.createBuffer(2)
+        buf[0] = reg
+        buf[1] = value
+        pins.i2cWriteBuffer(addr, buf)
     }
-
-    //% blockId=cbit_LED1 block="LED灯|引脚 %pin|状态 %value"
-    //% weight=5
-    //% blockGap=8
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=1
-    export function LED1(pin: DigitalPin, value: enLED1): void {
-
-        pins.digitalWritePin(pin, value);
-
+    function i2cread(addr: number, reg: number) {
+        pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
+        let val = pins.i2cReadNumber(addr, NumberFormat.UInt8BE);
+        return val;
     }
-
-    //% blockId=cbit_LED2 block="LED灯|引脚 %pin|亮度 %value"
-    //% weight=4
-    //% blockGap=8
-    //% color="#C814B8"
-    //% value.min=0 value.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
-    export function LED2(pin: AnalogPin, value: number): void {
-
-        pins.analogWritePin(pin, value * 1024 / 256);
-
+    function setFreq(freq: number): void {
+        // Constrain the frequency
+        let prescaleval = 25000000;
+        prescaleval /= 4096;
+        prescaleval /= freq;
+        prescaleval -= 1;
+        let prescale = prescaleval; //Math.Floor(prescaleval + 0.5);
+        let oldmode = i2cread(PCA9685_ADD, MODE1);
+        let newmode = (oldmode & 0x7F) | 0x10; // sleep
+        i2cwrite(PCA9685_ADD, MODE1, newmode); // go to sleep
+        i2cwrite(PCA9685_ADD, PRESCALE, prescale); // set the prescaler
+        i2cwrite(PCA9685_ADD, MODE1, oldmode);
+        control.waitMicros(5000);
+        i2cwrite(PCA9685_ADD, MODE1, oldmode | 0xa1);
     }
-
-    //% blockId=cbit_BreathLED block="呼吸灯|引脚 %pin"
-    //% weight=3
-    //% blockGap=8
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=3
-    export function BreathLED(pin: AnalogPin): void {
-
-        for (let i: number = 0; i < 1023; i++) {
-            pins.analogWritePin(pin, i);
-            //basic.pause(1);
-            control.waitMicros(1000);
+    function initPCA9685(): void {
+        i2cwrite(PCA9685_ADD, MODE1, 0x00)
+        setFreq(50);
+        initialized = true
+    }
+    function setPwm(channel: number, on: number, off: number): void {
+        if (channel < 0 || channel > 15)
+            return;
+        if (!initialized) {
+            initPCA9685();
         }
-        basic.pause(10);
-        for (let i: number = 1023; i > 0; i--) {
-            pins.analogWritePin(pin, i);
-            //basic.pause(1);
-            control.waitMicros(1000);
-        }
-
+        let buf = pins.createBuffer(5);
+        buf[0] = LED0_ON_L + 4 * channel;
+        buf[1] = on & 0xff;
+        buf[2] = (on >> 8) & 0xff;
+        buf[3] = off & 0xff;
+        buf[4] = (off >> 8) & 0xff;
+        pins.i2cWriteBuffer(PCA9685_ADD, buf);
     }
-
-    //% blockId=cbit_RGB block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|红色 %value1|绿色 %value2|蓝色 %value3"
-    //% weight=2
-    //% blockGap=8
-    //% color="#C814B8"
-    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value1: number, value2: number, value3: number): void {
-
-        pins.analogWritePin(pin1, value1 * 1024 / 256);
-        pins.analogWritePin(pin2, value2 * 1024 / 256);
-        pins.analogWritePin(pin3, value3 * 1024 / 256);
-
-    }
-    //% blockId=cbit_RGB2 block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|显示 %value"
-    //% weight=1
-    //% blockGap=8
+    /**
+     * *****************************************************************
+     * @param index
+     */
+    //% blockId=cbit_RGB_Car_Big2 block="小车RGB探照灯|选择车灯颜色 %value"
+    //% weight=101
+    //% blockGap=10
     //% color="#C814B8"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB2(pin1: DigitalPin, pin2: DigitalPin, pin3: DigitalPin, value: enColor): void {
+    export function RGB_Car_Big2(value: enColor): void {
 
         switch (value) {
             case enColor.OFF: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 0);
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 0);
                 break;
             }
             case enColor.Red: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 0);
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 0);
                 break;
             }
             case enColor.Green: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 0);
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 0);
                 break;
             }
             case enColor.Blue: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 1);
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 4095);
                 break;
             }
             case enColor.White: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 1);
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 4095);
                 break;
             }
             case enColor.Cyan: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 1);
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 4095);
                 break;
             }
             case enColor.Pinkish: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 1);
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 4095);
                 break;
             }
             case enColor.Yellow: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 0);
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 0);
                 break;
             }
         }
-
     }
    
 }
@@ -676,68 +808,7 @@ namespace Aibot_小车类 {
 
     }
 
-    /**
-     * *****************************************************************
-     * @param index
-     */
-    //% blockId=cbit_RGB_Car_Big2 block="小车RGB探照灯|选择车灯颜色 %value"
-    //% weight=101
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Car_Big2(value: enColor): void {
-
-        switch (value) {
-            case enColor.OFF: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Red: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Green: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Blue: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.White: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Cyan: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Pinkish: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Yellow: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                break;
-            }
-        }
-    }
+    
     //% blockId=cbit_RGB_Car_Big block="小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3"
     //% weight=100
     //% blockGap=10
