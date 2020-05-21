@@ -423,137 +423,6 @@ namespace Aibot_传感器类 {
     //     let d = pins.pulseIn(Echo, PulseValue.High, 23200);
     //     return d / 58;
     // } 
-    //% blockId=cbit_ultrasonic_car block="超声波传感器距离（cm）"
-    //% color="#006400"
-    //% weight=98
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-
-    let initialized = false
-    const PCA9685_ADD = 0x41
-    const MODE1 = 0x00
-    const PRESCALE = 0xFE
-    const LED0_ON_L = 0x06
-    export function Ultrasonic_Car(): number {
-
-        // send pulse
-        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-        control.waitMicros(2);
-        pins.digitalWritePin(DigitalPin.P14, 1);
-        control.waitMicros(10);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-
-        // read pulse
-        let d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 43200);
-        return d / 58;
-    }
-
-    export enum enPos {
-
-        //% blockId="LeftState" block="左边状态"
-        LeftState = 1,
-        //% blockId="RightState" block="右边状态"
-        RightState = 0
-    }
-    export enum enLineState {
-        //% blockId="White" block="白线"
-        White = 0,
-        //% blockId="Black" block="黑线"
-        Black = 1
-
-    }
-    function i2cwrite(addr: number, reg: number, value: number) {
-        let buf = pins.createBuffer(2)
-        buf[0] = reg
-        buf[1] = value
-        pins.i2cWriteBuffer(addr, buf)
-    }
-    function i2cread(addr: number, reg: number) {
-        pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
-        let val = pins.i2cReadNumber(addr, NumberFormat.UInt8BE);
-        return val;
-    }
-    function setFreq(freq: number): void {
-        // Constrain the frequency
-        let prescaleval = 25000000;
-        prescaleval /= 4096;
-        prescaleval /= freq;
-        prescaleval -= 1;
-        let prescale = prescaleval; //Math.Floor(prescaleval + 0.5);
-        let oldmode = i2cread(PCA9685_ADD, MODE1);
-        let newmode = (oldmode & 0x7F) | 0x10; // sleep
-        i2cwrite(PCA9685_ADD, MODE1, newmode); // go to sleep
-        i2cwrite(PCA9685_ADD, PRESCALE, prescale); // set the prescaler
-        i2cwrite(PCA9685_ADD, MODE1, oldmode);
-        control.waitMicros(5000);
-        i2cwrite(PCA9685_ADD, MODE1, oldmode | 0xa1);
-    }
-    function initPCA9685(): void {
-        i2cwrite(PCA9685_ADD, MODE1, 0x00)
-        setFreq(50);
-        initialized = true
-    }
-    function setPwm(channel: number, on: number, off: number): void {
-        if (channel < 0 || channel > 15)
-            return;
-        if (!initialized) {
-            initPCA9685();
-        }
-        let buf = pins.createBuffer(5);
-        buf[0] = LED0_ON_L + 4 * channel;
-        buf[1] = on & 0xff;
-        buf[2] = (on >> 8) & 0xff;
-        buf[3] = off & 0xff;
-        buf[4] = (off >> 8) & 0xff;
-        pins.i2cWriteBuffer(PCA9685_ADD, buf);
-    }
-
-    //% blockId=cbit_Line_Sensor block="巡线传感器|检测到 %direct|为 %value"
-    //% weight=94
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Line_Sensor(direct: enPos, value: enLineState): boolean {
-
-        let temp: boolean = false;
-
-        switch (direct) {
-            case enPos.LeftState: {
-                if (pins.analogReadPin(AnalogPin.P1) < 500) {
-                    if (value == enLineState.White) {
-                        temp = true;
-                    }
-                    setPwm(7, 0, 4095);
-                }
-                else {
-                    if (value == enLineState.Black) {
-                        temp = true;
-                    }
-                    setPwm(7, 0, 0);
-                }
-                break;
-            }
-
-            case enPos.RightState: {
-                if (pins.analogReadPin(AnalogPin.P2) < 500) {
-                    if (value == enLineState.White) {
-                        temp = true;
-                    }
-                    setPwm(6, 0, 4095);
-                }
-                else {
-                    if (value == enLineState.Black) {
-                        temp = true;
-                    }
-                    setPwm(6, 0, 0);
-                }
-                break;
-            }
-        }
-        return temp;
-
-    }    
 }
 /*****************************************************************************************************************************************
  *    音乐类 *****************************************************************************************************************************
@@ -1069,7 +938,51 @@ namespace Aibot_小车类 {
     //     return temp;
 
     // }
-   
+    //% blockId=cbit_Line_Sensor block="巡线传感器|检测到 %direct|为 %value"
+    //% weight=94
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Line_Sensor(direct: enPos, value: enLineState): boolean {
+
+        let temp: boolean = false;
+
+        switch (direct) {
+            case enPos.LeftState: {
+                if (pins.analogReadPin(AnalogPin.P1) < 500) {
+                    if (value == enLineState.White) {
+                        temp = true;
+                    }
+                    setPwm(7, 0, 4095);
+                }
+                else {
+                    if (value == enLineState.Black) {
+                        temp = true;
+                    }
+                    setPwm(7, 0, 0);
+                }
+                break;
+            }
+
+            case enPos.RightState: {
+                if (pins.analogReadPin(AnalogPin.P2) < 500) {
+                    if (value == enLineState.White) {
+                        temp = true;
+                    }
+                    setPwm(6, 0, 4095);
+                }
+                else {
+                    if (value == enLineState.Black) {
+                        temp = true;
+                    }
+                    setPwm(6, 0, 0);
+                }
+                break;
+            }
+        }
+        return temp;
+
+    }
     //% blockId=cbit_CarCtrl block="控制Aibot小车|%index"
     //% weight=93
     //% blockGap=10
