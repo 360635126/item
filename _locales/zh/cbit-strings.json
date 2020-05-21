@@ -1,32 +1,33 @@
 {
 
-  "Aibot_显示类.LED1|block": "LEDaaaa灯|引脚 %pin|状态 %value",
-  "Aibot_显示类.LED2|block": "LED灯|引脚 %pin|亮度 %value",
-  "Aibot_显示类.BreathLED|block": "呼吸灯|引脚 %pin",
-  "Aibot_显示类.RGB|block": "RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|红色 %value1|绿色 %value2|蓝色 %value3",
-  "Aibot_显示类.RGB2|block": "RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|显示 %value",
+  "cbit_显示类.LED1|block": "LEDaaaa灯|引脚 %pin|状态 %value",
+  "cbit_显示类.LED2|block": "LED灯|引脚 %pin|亮度 %value",
+  "cbit_显示类.BreathLED|block": "呼吸灯|引脚 %pin",
+  "cbit_显示类.RGB|block": "RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|红色 %value1|绿色 %value2|蓝色 %value3",
+  "cbit_显示类.RGB2|block": "RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|显示 %value",
 
-  "Aibot_输入类.TouchPad|block": "触摸开关|引脚 %pin|返回 %value",
-  "Aibot_输入类.Rocker|block": "遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value",
-  "Aibot_输入类.Button|block": "按键|引脚 %pin|返回 %value",
+  "cbit_输入类.TouchPad|block": "触摸开关|引脚 %pin|返回 %value",
+  "cbit_输入类.Rocker|block": "遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value",
+  "cbit_输入类.Button|block": "按键|引脚 %pin|返回 %value",
 
-  "Aibot_传感器类.Voice_Sensor|block": "声音传感器|引脚 %pin|返回 %value",
-  "Aibot_传感器类.IR_Sensor|block": "红外传感器|引脚 %pin|  |%value|障碍物",
-  "Aibot_传感器类.IR_Send|block": "红外发射|引脚 %pin",
-  "Aibot_传感器类.Ultrasonic|block": "超声波|发射管脚 %Trig|接收管脚 %Echo",
+  "cbit_传感器类.Voice_Sensor|block": "声音传感器|引脚 %pin|返回 %value",
+  "cbit_传感器类.IR_Sensor|block": "红外传感器|引脚 %pin|  |%value|障碍物",
+  "cbit_传感器类.IR_Send|block": "红外发射|引脚 %pin",
+  "cbit_传感器类.Ultrasonic|block": "超声波|发射管脚 %Trig|接收管脚 %Echo",
 
-  "Aibot_音乐类.Buzzer|block": "有源蜂鸣器|引脚 %pin|值 %value",
+  "cbit_音乐类.Buzzer|block": "有源蜂鸣器|引脚 %pin|值 %value",
 
-  "Aibot_电机类.Fan|block": "风扇|引脚 %pin|速度 %value",
-  "Aibot_电机类.Servo|block": "舵机|引脚 %pin|角度 %value",
+  "cbit_电机类.Fan|block": "风扇|引脚 %pin|速度 %value",
+  "cbit_电机类.Servo|block": "舵机|引脚 %pin|角度 %value",
 
-  "Aibot_小车类.RGB_Car_Big|block": "小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3",
-  "Aibot_小车类.RGB_Car_Big2|block": "小车RGB探照灯|选择车灯颜色 %value",
-  "Aibot_小车类.Ultrasonic_Car|block": "超声波传感器距离（cm）",
-  "Aibot_小车类.RGB_Car_Program|block": "七彩流水灯",
-  "Aibot_小车类.Music_Car|block": "Aibot小车播放音乐|%index",
-  "Aibot_小车类.Line_Sensor|block": "巡线传感器|检测到 %direct|为 %value",
-  "Aibot_小车类.AloneCtrlSpeed|block": "单独电机|%index|速度 %speed",
-  "Aibot_小车类.CarCtrl|block": "控制Aibot小车|%index",
-  "Aibot_小车类.CarCtrlSpeed|block": "控制Aibot小车|%index|速度 %speed"
+  "cbit_小车类.RGB_Car_Big|block": "小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3",
+  "cbit_小车类.RGB_Car_Big2|block": "小车RGB探照灯|选择车灯颜色 %value",
+  "cbit_小车类.Ultrasonic_Car|block": "超声波传感器距离（cm）",
+  "cbit_小车类.RGB_Car_Program|block": "七彩流水灯",
+  "cbit_小车类.Music_Car|block": "Aibot小车播放音乐|%index",
+  "cbit_小车类.Line_Sensor|block": "巡线传感器|检测到 %direct|为 %value",
+  
+  "cbit_小车类.Servo_Car|block": "小车舵机|编号 %num|角度 %value",
+  "cbit_小车类.CarCtrl|block": "控制Aibot小车|%index",
+  "cbit_小车类.CarCtrlSpeed|block": "控制Aibot小车|%index|速度 %speed"
 }
