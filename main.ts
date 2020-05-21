@@ -253,118 +253,6 @@ namespace Aibot_传感器类 {
         return d / 58;
     }
 }
-
-/*****************************************************************************************************************************************
- *  输入类 *****************************************************************************************************************************
- ****************************************************************************************************************************************/
-
-//% color="#808080" weight=23 icon="\uf11c"
-// namespace Aibot_输入类 {
-
-//     export enum enRocker {
-//         //% blockId="Nostate" block="无"
-//         Nostate = 0,
-//         //% blockId="Up" block="上"
-//         Up,
-//         //% blockId="Down" block="下"
-//         Down,
-//         //% blockId="Left" block="左"
-//         Left,
-//         //% blockId="Right" block="右"
-//         Right,
-//         //% blockId="Press" block="按下"
-//         Press
-//     }
-
-//     export enum enTouch {
-//         //% blockId="NoTouch" block="未触摸"
-//         NoTouch = 0,
-//         //% blockId="Touch" block="触摸"
-//         Touch = 1
-//     }
-//     export enum enButton {
-//         //% blockId="Press" block="按下"
-//         Press = 0,
-//         //% blockId="Realse" block="松开"
-//         Realse = 1
-//     }
-
-//     //% blockId=cbit_TouchPad block="触摸开关|引脚 %pin|返回 %value"
-//     //% weight=100
-//     //% blockGap=10
-//     //% color="#808080"
-//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-//     export function TouchPad(pin: DigitalPin, value: enTouch): boolean {
-
-//         pins.setPull(pin, PinPullMode.PullUp);
-//         if (pins.digitalReadPin(pin) == value) {
-//             return true;
-//         }
-//         else {
-//             return false;
-//         }
-
-//     }
-//     //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
-//     //% weight=100
-//     //% blockGap=10
-//     //% color="#808080"
-//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-//     export function Rocker(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value: enRocker): boolean {
-
-//         //pins.setPull(pin3, PinPullMode.PullUp);
-//         let x = pins.analogReadPin(pin1);
-//         let y = pins.analogReadPin(pin2);
-//         let z = pins.analogReadPin(pin3);
-//         let now_state = enRocker.Nostate;
-
-//         if (x <= 20) // 上
-//         {
-
-//             now_state = enRocker.Up;
-
-//         }
-//         if (x >= 1000) //
-//         {
-
-//             now_state = enRocker.Down;
-//         }
-//         if (y <= 50) //右
-//         {
-//             now_state = enRocker.Right;
-//         }
-//         if (y >= 1000) //左
-//         {
-//             now_state = enRocker.Left;
-//         }
-//         if (z <= 20)
-//             now_state = enRocker.Press;
-        
-//         if (now_state == value)
-//             return true;
-//         else
-//             return false;
-
-//     }
-
-//     //% blockId=cbit_Button block="按键|引脚 %pin|返回 %value"
-//     //% weight=100
-//     //% blockGap=10
-//     //% color="#808080"
-//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-//     export function Button(pin: DigitalPin, value: enButton): boolean {
-
-//         pins.setPull(pin, PinPullMode.PullUp);
-//         if (pins.digitalReadPin(pin) == value) {
-//             return true;
-//         }
-//         else {
-//             return false;
-//         }
-
-//     }  
-// }
-
 /*****************************************************************************************************************************************
  *    音乐类 *****************************************************************************************************************************
  ****************************************************************************************************************************************/
@@ -393,40 +281,9 @@ namespace Aibot_音乐类 {
     }
 
 }
-
 /*****************************************************************************************************************************************
- *    电机类 *****************************************************************************************************************************
+ *    小车类*****************************************************************************************************************************
  ****************************************************************************************************************************************/
-
-//% color="#0000CD" weight=21 icon="\uf185"
-// namespace Aibot_电机类 {
-
-//     //% blockId=cbit_Fan block="风扇|引脚 %pin|速度 %value"
-//     //% weight=100
-//     //% blockGap=10
-//     //% color="#0000CD"
-//     //% value.min=0 value.max=1023
-//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-//     export function Fan(pin: AnalogPin, value: number): void {
-
-//         pins.analogWritePin(pin, value);
-
-//     }
-
-//     //% blockId=cbit_Servo block="舵机|引脚 %pin|角度 %value"
-//     //% weight=100
-//     //% blockGap=10
-//     //% color="#0000CD"
-//     //% value.min=0 value.max=180
-//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-//     export function Servo(pin: AnalogPin, value: number): void {
-
-//         pins.servoWritePin(pin, value);
-
-//     }
-
-// }
-
 //% color="#006400" weight=20 icon="\uf1b9"
 namespace Aibot_小车类 {
 
@@ -1117,3 +974,151 @@ namespace Aibot_小车类 {
         }
     }    
 }
+
+/*****************************************************************************************************************************************
+ *  输入类 *****************************************************************************************************************************
+ ****************************************************************************************************************************************/
+
+//% color="#808080" weight=23 icon="\uf11c"
+// namespace Aibot_输入类 {
+
+//     export enum enRocker {
+//         //% blockId="Nostate" block="无"
+//         Nostate = 0,
+//         //% blockId="Up" block="上"
+//         Up,
+//         //% blockId="Down" block="下"
+//         Down,
+//         //% blockId="Left" block="左"
+//         Left,
+//         //% blockId="Right" block="右"
+//         Right,
+//         //% blockId="Press" block="按下"
+//         Press
+//     }
+
+//     export enum enTouch {
+//         //% blockId="NoTouch" block="未触摸"
+//         NoTouch = 0,
+//         //% blockId="Touch" block="触摸"
+//         Touch = 1
+//     }
+//     export enum enButton {
+//         //% blockId="Press" block="按下"
+//         Press = 0,
+//         //% blockId="Realse" block="松开"
+//         Realse = 1
+//     }
+
+//     //% blockId=cbit_TouchPad block="触摸开关|引脚 %pin|返回 %value"
+//     //% weight=100
+//     //% blockGap=10
+//     //% color="#808080"
+//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+//     export function TouchPad(pin: DigitalPin, value: enTouch): boolean {
+
+//         pins.setPull(pin, PinPullMode.PullUp);
+//         if (pins.digitalReadPin(pin) == value) {
+//             return true;
+//         }
+//         else {
+//             return false;
+//         }
+
+//     }
+//     //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
+//     //% weight=100
+//     //% blockGap=10
+//     //% color="#808080"
+//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
+//     export function Rocker(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value: enRocker): boolean {
+
+//         //pins.setPull(pin3, PinPullMode.PullUp);
+//         let x = pins.analogReadPin(pin1);
+//         let y = pins.analogReadPin(pin2);
+//         let z = pins.analogReadPin(pin3);
+//         let now_state = enRocker.Nostate;
+
+//         if (x <= 20) // 上
+//         {
+
+//             now_state = enRocker.Up;
+
+//         }
+//         if (x >= 1000) //
+//         {
+
+//             now_state = enRocker.Down;
+//         }
+//         if (y <= 50) //右
+//         {
+//             now_state = enRocker.Right;
+//         }
+//         if (y >= 1000) //左
+//         {
+//             now_state = enRocker.Left;
+//         }
+//         if (z <= 20)
+//             now_state = enRocker.Press;
+        
+//         if (now_state == value)
+//             return true;
+//         else
+//             return false;
+
+//     }
+
+//     //% blockId=cbit_Button block="按键|引脚 %pin|返回 %value"
+//     //% weight=100
+//     //% blockGap=10
+//     //% color="#808080"
+//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
+//     export function Button(pin: DigitalPin, value: enButton): boolean {
+
+//         pins.setPull(pin, PinPullMode.PullUp);
+//         if (pins.digitalReadPin(pin) == value) {
+//             return true;
+//         }
+//         else {
+//             return false;
+//         }
+
+//     }  
+// }
+
+
+
+/*****************************************************************************************************************************************
+ *    电机类 *****************************************************************************************************************************
+ ****************************************************************************************************************************************/
+
+//% color="#0000CD" weight=21 icon="\uf185"
+// namespace Aibot_电机类 {
+
+//     //% blockId=cbit_Fan block="风扇|引脚 %pin|速度 %value"
+//     //% weight=100
+//     //% blockGap=10
+//     //% color="#0000CD"
+//     //% value.min=0 value.max=1023
+//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
+//     export function Fan(pin: AnalogPin, value: number): void {
+
+//         pins.analogWritePin(pin, value);
+
+//     }
+
+//     //% blockId=cbit_Servo block="舵机|引脚 %pin|角度 %value"
+//     //% weight=100
+//     //% blockGap=10
+//     //% color="#0000CD"
+//     //% value.min=0 value.max=180
+//     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
+//     export function Servo(pin: AnalogPin, value: number): void {
+
+//         pins.servoWritePin(pin, value);
+
+//     }
+
+// }
+
+
