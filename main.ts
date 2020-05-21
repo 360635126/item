@@ -975,55 +975,55 @@ namespace Aibot_小车类 {
     //% color="#006400"
     //% num.min=1 num.max=3 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-    export function Servo_Car(num: enServo, value: number): void {
+    // export function Servo_Car(num: enServo, value: number): void {
 
-        // 50hz: 20,000 us
-        let us = (value * 1800 / 180 + 600); // 0.6 ~ 2.4
-        let pwm = us * 4096 / 20000;
-        setPwm(num + 2, 0, pwm);
+    //     // 50hz: 20,000 us
+    //     let us = (value * 1800 / 180 + 600); // 0.6 ~ 2.4
+    //     let pwm = us * 4096 / 20000;
+    //     setPwm(num + 2, 0, pwm);
 
-    }
+    // }
 
     //% blockId=cbit_Avoid_Sensor block="避障传感器|检测到 %value"
     //% weight=95
     //% blockGap=10
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Avoid_Sensor(value: enAvoidState): boolean {
+    // export function Avoid_Sensor(value: enAvoidState): boolean {
 
-        let temp: boolean = false;
-        pins.digitalWritePin(DigitalPin.P9, 0);
-        switch (value) {
-            case enAvoidState.OBSTACLE: {
-                if (pins.analogReadPin(AnalogPin.P3) < 800) {
+    //     let temp: boolean = false;
+    //     pins.digitalWritePin(DigitalPin.P9, 0);
+    //     switch (value) {
+    //         case enAvoidState.OBSTACLE: {
+    //             if (pins.analogReadPin(AnalogPin.P3) < 800) {
                 
-                    temp = true;
-                    setPwm(8, 0, 0);
-                }
-                else {                 
-                    temp = false;
-                    setPwm(8, 0, 4095);
-                }
-                break;
-            }
+    //                 temp = true;
+    //                 setPwm(8, 0, 0);
+    //             }
+    //             else {                 
+    //                 temp = false;
+    //                 setPwm(8, 0, 4095);
+    //             }
+    //             break;
+    //         }
 
-            case enAvoidState.NOOBSTACLE: {
-                if (pins.analogReadPin(AnalogPin.P3) > 800) {
+    //         case enAvoidState.NOOBSTACLE: {
+    //             if (pins.analogReadPin(AnalogPin.P3) > 800) {
 
-                    temp = true;
-                    setPwm(8, 0, 4095);
-                }
-                else {
-                    temp = false;
-                    setPwm(8, 0, 0);
-                }
-                break;
-            }
-        }
-        pins.digitalWritePin(DigitalPin.P9, 1);
-        return temp;
+    //                 temp = true;
+    //                 setPwm(8, 0, 4095);
+    //             }
+    //             else {
+    //                 temp = false;
+    //                 setPwm(8, 0, 0);
+    //             }
+    //             break;
+    //         }
+    //     }
+    //     pins.digitalWritePin(DigitalPin.P9, 1);
+    //     return temp;
 
-    }
+    // }
     //% blockId=cbit_Line_Sensor block="巡线传感器|位置 %direct|检测到 %value"
     //% weight=94
     //% blockGap=10
