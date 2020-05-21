@@ -160,7 +160,6 @@ namespace Aibot_显示类 {
     const PRESCALE = 0xFE
     const LED0_ON_L = 0x06
     let yahStrip: neopixel.Strip;
-
     export enum enColor {
 
         //% blockId="OFF" block="灭"
@@ -334,95 +333,95 @@ namespace Aibot_显示类 {
 //% color="#87CEEB" weight=24 icon="\uf1b6"
 namespace Aibot_传感器类 {
 
-    // export enum enVoice {
-    //     //% blockId="Voice" block="有声音"
-    //     Voice = 0,
-    //     //% blockId="NoVoice" block="无声音"
-    //     NoVoice = 1
-    // }
+    export enum enVoice {
+        //% blockId="Voice" block="有声音"
+        Voice = 0,
+        //% blockId="NoVoice" block="无声音"
+        NoVoice = 1
+    }
 
-    // export enum enIR {
-    //     //% blockId="Get" block="检测到"
-    //     Get = 0,
-    //     //% blockId="NoVoice" block="未检测"
-    //     NoGet = 1
-    // }
+    export enum enIR {
+        //% blockId="Get" block="检测到"
+        Get = 0,
+        //% blockId="NoVoice" block="未检测"
+        NoGet = 1
+    }
     
 
-    // //% blockId=cbit_Voice_Sensor block="声音传感器|引脚 %pin|返回 %value"
-    // //% weight=100
-    // //% blockGap=10
-    // //% color="#87CEEB"
-    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    // export function Voice_Sensor(pin: DigitalPin, value: enVoice): boolean {
+    //% blockId=cbit_Voice_Sensor block="声音传感器|引脚 %pin|返回 %value"
+    //% weight=100
+    //% blockGap=10
+    //% color="#87CEEB"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Voice_Sensor(pin: DigitalPin, value: enVoice): boolean {
 
-    //     pins.setPull(pin, PinPullMode.PullUp);
-    //     if (pins.digitalReadPin(pin) == value) {
-    //         return true;
-    //     }
-    //     else {
-    //         return false;
-    //     }
+        pins.setPull(pin, PinPullMode.PullUp);
+        if (pins.digitalReadPin(pin) == value) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
-    // }
+    }
 
-    // function IR_send_38k() {
-    //     for (let i: number = 0; i < 8; i++) {
-    //         pins.digitalWritePin(DigitalPin.P9, 1);
-    //         control.waitMicros(13);
-    //         pins.digitalWritePin(DigitalPin.P9, 0);
-    //         control.waitMicros(13);
-    //     }
-    // }
-    // //% blockId=cbit_IR_Sensor block="红外传感器|引脚 %pin|  |%value|障碍物"
-    // //% weight=100
-    // //% blockGap=10
-    // //% color="#87CEEB"
-    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    // export function IR_Sensor(pin: DigitalPin, value: enIR): boolean {
+    function IR_send_38k() {
+        for (let i: number = 0; i < 8; i++) {
+            pins.digitalWritePin(DigitalPin.P9, 1);
+            control.waitMicros(13);
+            pins.digitalWritePin(DigitalPin.P9, 0);
+            control.waitMicros(13);
+        }
+    }
+    //% blockId=cbit_IR_Sensor block="红外传感器|引脚 %pin|  |%value|障碍物"
+    //% weight=100
+    //% blockGap=10
+    //% color="#87CEEB"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function IR_Sensor(pin: DigitalPin, value: enIR): boolean {
 
-    //     pins.setPull(pin, PinPullMode.PullUp);
-    //     //IR_send_38k();
-    //     if (pins.digitalReadPin(pin) == value) {
-    //         return true;
-    //     }
-    //     else {
-    //         return false;
-    //     }
+        pins.setPull(pin, PinPullMode.PullUp);
+        //IR_send_38k();
+        if (pins.digitalReadPin(pin) == value) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
-    // }
+    }
 
-    // //% blockId=cbit_IR_Send block="红外发射|引脚 %pin"
-    // //% weight=100
-    // //% blockGap=10
-    // //% color="#87CEEB"
-    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    // export function IR_Send(pin: DigitalPin): void {
+    //% blockId=cbit_IR_Send block="红外发射|引脚 %pin"
+    //% weight=100
+    //% blockGap=10
+    //% color="#87CEEB"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function IR_Send(pin: DigitalPin): void {
 
         
-    //     IR_send_38k();
+        IR_send_38k();
 
-    // }
+    }
    
-    // //% blockId=cbit_ultrasonic block="超声波|发射管脚 %Trig|接收管脚 %Echo"
-    // //% color="#87CEEB"
-    // //% weight=100
-    // //% blockGap=10
-    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    // export function Ultrasonic(Trig: DigitalPin, Echo: DigitalPin): number {
+    //% blockId=cbit_ultrasonic block="超声波|发射管脚 %Trig|接收管脚 %Echo"
+    //% color="#87CEEB"
+    //% weight=100
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Ultrasonic(Trig: DigitalPin, Echo: DigitalPin): number {
 
-    //     // send pulse
-    //     pins.setPull(Trig, PinPullMode.PullNone);
-    //     pins.digitalWritePin(Trig, 0);
-    //     control.waitMicros(2);
-    //     pins.digitalWritePin(Trig, 1);
-    //     control.waitMicros(10);
-    //     pins.digitalWritePin(Trig, 0);
+        // send pulse
+        pins.setPull(Trig, PinPullMode.PullNone);
+        pins.digitalWritePin(Trig, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(Trig, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(Trig, 0);
 
-    //     // read pulse
-    //     let d = pins.pulseIn(Echo, PulseValue.High, 23200);
-    //     return d / 58;
-    // } 
+        // read pulse
+        let d = pins.pulseIn(Echo, PulseValue.High, 23200);
+        return d / 58;
+    }
 }
 /*****************************************************************************************************************************************
  *    音乐类 *****************************************************************************************************************************
@@ -852,8 +851,26 @@ namespace Aibot_小车类 {
 
  
 
-    
-    
+    //% blockId=cbit_ultrasonic_car block="超声波传感器距离（cm）"
+    //% color="#006400"
+    //% weight=98
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Ultrasonic_Car(): number {
+
+        // send pulse
+        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
+        pins.digitalWritePin(DigitalPin.P14, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(DigitalPin.P14, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(DigitalPin.P14, 0);
+
+        // read pulse
+        let d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 43200);
+        return d / 58;
+    }
+
     //% blockId=cbit_Music_Car block="Aibot小车播放音乐|%index"
     //% weight=97
     //% blockGap=10
