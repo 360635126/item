@@ -159,6 +159,8 @@ namespace Aibot_显示类 {
     const MODE1 = 0x00
     const PRESCALE = 0xFE
     const LED0_ON_L = 0x06
+    let yahStrip: neopixel.Strip;
+
     export enum enColor {
 
         //% blockId="OFF" block="灭"
@@ -286,6 +288,43 @@ namespace Aibot_显示类 {
             }
         }
     }
+    //% blockId=cbit_RGB_Car_Big block="小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3"
+    //% weight=100
+    //% blockGap=10
+    //% color="#C814B8"
+    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RGB_Car_Big(value1: number, value2: number, value3: number): void {
+
+        let R = value1 * 16;
+        let G = value2 * 16;
+        let B = value3 * 16;
+
+        if (R > 4096)
+            R = 4095;
+        if (G > 4096)
+            G = 4095;
+        if (B > 4096)
+            B = 4095;
+
+        setPwm(0, 0, R);
+        setPwm(1, 0, G);
+        setPwm(2, 0, B);
+
+    }
+       //% blockId=cbit_RGB_Car_Program block="七彩流水灯"
+    //% weight=99
+    //% blockGap=10
+    //% color="#C814B8"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RGB_Car_Program(): neopixel.Strip {
+         
+        if (!yahStrip) {
+            yahStrip = neopixel.create(DigitalPin.P16, 3, NeoPixelMode.RGB);
+        }
+        return yahStrip;  
+    }
+
    
 }
 /*****************************************************************************************************************************************
@@ -295,95 +334,226 @@ namespace Aibot_显示类 {
 //% color="#87CEEB" weight=24 icon="\uf1b6"
 namespace Aibot_传感器类 {
 
-    export enum enVoice {
-        //% blockId="Voice" block="有声音"
-        Voice = 0,
-        //% blockId="NoVoice" block="无声音"
-        NoVoice = 1
-    }
+    // export enum enVoice {
+    //     //% blockId="Voice" block="有声音"
+    //     Voice = 0,
+    //     //% blockId="NoVoice" block="无声音"
+    //     NoVoice = 1
+    // }
 
-    export enum enIR {
-        //% blockId="Get" block="检测到"
-        Get = 0,
-        //% blockId="NoVoice" block="未检测"
-        NoGet = 1
-    }
+    // export enum enIR {
+    //     //% blockId="Get" block="检测到"
+    //     Get = 0,
+    //     //% blockId="NoVoice" block="未检测"
+    //     NoGet = 1
+    // }
     
 
-    //% blockId=cbit_Voice_Sensor block="声音传感器|引脚 %pin|返回 %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Voice_Sensor(pin: DigitalPin, value: enVoice): boolean {
+    // //% blockId=cbit_Voice_Sensor block="声音传感器|引脚 %pin|返回 %value"
+    // //% weight=100
+    // //% blockGap=10
+    // //% color="#87CEEB"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function Voice_Sensor(pin: DigitalPin, value: enVoice): boolean {
 
-        pins.setPull(pin, PinPullMode.PullUp);
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    //     pins.setPull(pin, PinPullMode.PullUp);
+    //     if (pins.digitalReadPin(pin) == value) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
 
-    }
+    // }
 
-    function IR_send_38k() {
-        for (let i: number = 0; i < 8; i++) {
-            pins.digitalWritePin(DigitalPin.P9, 1);
-            control.waitMicros(13);
-            pins.digitalWritePin(DigitalPin.P9, 0);
-            control.waitMicros(13);
-        }
-    }
-    //% blockId=cbit_IR_Sensor block="红外传感器|引脚 %pin|  |%value|障碍物"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function IR_Sensor(pin: DigitalPin, value: enIR): boolean {
+    // function IR_send_38k() {
+    //     for (let i: number = 0; i < 8; i++) {
+    //         pins.digitalWritePin(DigitalPin.P9, 1);
+    //         control.waitMicros(13);
+    //         pins.digitalWritePin(DigitalPin.P9, 0);
+    //         control.waitMicros(13);
+    //     }
+    // }
+    // //% blockId=cbit_IR_Sensor block="红外传感器|引脚 %pin|  |%value|障碍物"
+    // //% weight=100
+    // //% blockGap=10
+    // //% color="#87CEEB"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function IR_Sensor(pin: DigitalPin, value: enIR): boolean {
 
-        pins.setPull(pin, PinPullMode.PullUp);
-        //IR_send_38k();
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    //     pins.setPull(pin, PinPullMode.PullUp);
+    //     //IR_send_38k();
+    //     if (pins.digitalReadPin(pin) == value) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
 
-    }
+    // }
 
-    //% blockId=cbit_IR_Send block="红外发射|引脚 %pin"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function IR_Send(pin: DigitalPin): void {
+    // //% blockId=cbit_IR_Send block="红外发射|引脚 %pin"
+    // //% weight=100
+    // //% blockGap=10
+    // //% color="#87CEEB"
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function IR_Send(pin: DigitalPin): void {
 
         
-        IR_send_38k();
+    //     IR_send_38k();
 
-    }
+    // }
    
-    //% blockId=cbit_ultrasonic block="超声波|发射管脚 %Trig|接收管脚 %Echo"
-    //% color="#87CEEB"
-    //% weight=100
+    // //% blockId=cbit_ultrasonic block="超声波|发射管脚 %Trig|接收管脚 %Echo"
+    // //% color="#87CEEB"
+    // //% weight=100
+    // //% blockGap=10
+    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    // export function Ultrasonic(Trig: DigitalPin, Echo: DigitalPin): number {
+
+    //     // send pulse
+    //     pins.setPull(Trig, PinPullMode.PullNone);
+    //     pins.digitalWritePin(Trig, 0);
+    //     control.waitMicros(2);
+    //     pins.digitalWritePin(Trig, 1);
+    //     control.waitMicros(10);
+    //     pins.digitalWritePin(Trig, 0);
+
+    //     // read pulse
+    //     let d = pins.pulseIn(Echo, PulseValue.High, 23200);
+    //     return d / 58;
+    // } 
+    //% blockId=cbit_ultrasonic_car block="超声波传感器距离（cm）"
+    //% color="#006400"
+    //% weight=98
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic(Trig: DigitalPin, Echo: DigitalPin): number {
+
+    let initialized = false
+    const PCA9685_ADD = 0x41
+    const MODE1 = 0x00
+    const PRESCALE = 0xFE
+    const LED0_ON_L = 0x06
+    export function Ultrasonic_Car(): number {
 
         // send pulse
-        pins.setPull(Trig, PinPullMode.PullNone);
-        pins.digitalWritePin(Trig, 0);
+        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
+        pins.digitalWritePin(DigitalPin.P14, 0);
         control.waitMicros(2);
-        pins.digitalWritePin(Trig, 1);
+        pins.digitalWritePin(DigitalPin.P14, 1);
         control.waitMicros(10);
-        pins.digitalWritePin(Trig, 0);
+        pins.digitalWritePin(DigitalPin.P14, 0);
 
         // read pulse
-        let d = pins.pulseIn(Echo, PulseValue.High, 23200);
+        let d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 43200);
         return d / 58;
     }
+
+    export enum enPos {
+
+        //% blockId="LeftState" block="左边状态"
+        LeftState = 1,
+        //% blockId="RightState" block="右边状态"
+        RightState = 0
+    }
+    export enum enLineState {
+        //% blockId="White" block="白线"
+        White = 0,
+        //% blockId="Black" block="黑线"
+        Black = 1
+
+    }
+    function i2cwrite(addr: number, reg: number, value: number) {
+        let buf = pins.createBuffer(2)
+        buf[0] = reg
+        buf[1] = value
+        pins.i2cWriteBuffer(addr, buf)
+    }
+    function i2cread(addr: number, reg: number) {
+        pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
+        let val = pins.i2cReadNumber(addr, NumberFormat.UInt8BE);
+        return val;
+    }
+    function setFreq(freq: number): void {
+        // Constrain the frequency
+        let prescaleval = 25000000;
+        prescaleval /= 4096;
+        prescaleval /= freq;
+        prescaleval -= 1;
+        let prescale = prescaleval; //Math.Floor(prescaleval + 0.5);
+        let oldmode = i2cread(PCA9685_ADD, MODE1);
+        let newmode = (oldmode & 0x7F) | 0x10; // sleep
+        i2cwrite(PCA9685_ADD, MODE1, newmode); // go to sleep
+        i2cwrite(PCA9685_ADD, PRESCALE, prescale); // set the prescaler
+        i2cwrite(PCA9685_ADD, MODE1, oldmode);
+        control.waitMicros(5000);
+        i2cwrite(PCA9685_ADD, MODE1, oldmode | 0xa1);
+    }
+    function initPCA9685(): void {
+        i2cwrite(PCA9685_ADD, MODE1, 0x00)
+        setFreq(50);
+        initialized = true
+    }
+    function setPwm(channel: number, on: number, off: number): void {
+        if (channel < 0 || channel > 15)
+            return;
+        if (!initialized) {
+            initPCA9685();
+        }
+        let buf = pins.createBuffer(5);
+        buf[0] = LED0_ON_L + 4 * channel;
+        buf[1] = on & 0xff;
+        buf[2] = (on >> 8) & 0xff;
+        buf[3] = off & 0xff;
+        buf[4] = (off >> 8) & 0xff;
+        pins.i2cWriteBuffer(PCA9685_ADD, buf);
+    }
+
+    //% blockId=cbit_Line_Sensor block="巡线传感器|检测到 %direct|为 %value"
+    //% weight=94
+    //% blockGap=10
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Line_Sensor(direct: enPos, value: enLineState): boolean {
+
+        let temp: boolean = false;
+
+        switch (direct) {
+            case enPos.LeftState: {
+                if (pins.analogReadPin(AnalogPin.P1) < 500) {
+                    if (value == enLineState.White) {
+                        temp = true;
+                    }
+                    setPwm(7, 0, 4095);
+                }
+                else {
+                    if (value == enLineState.Black) {
+                        temp = true;
+                    }
+                    setPwm(7, 0, 0);
+                }
+                break;
+            }
+
+            case enPos.RightState: {
+                if (pins.analogReadPin(AnalogPin.P2) < 500) {
+                    if (value == enLineState.White) {
+                        temp = true;
+                    }
+                    setPwm(6, 0, 4095);
+                }
+                else {
+                    if (value == enLineState.Black) {
+                        temp = true;
+                    }
+                    setPwm(6, 0, 0);
+                }
+                break;
+            }
+        }
+        return temp;
+
+    }    
 }
 /*****************************************************************************************************************************************
  *    音乐类 *****************************************************************************************************************************
@@ -809,65 +979,12 @@ namespace Aibot_小车类 {
     }
 
     
-    //% blockId=cbit_RGB_Car_Big block="小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3"
-    //% weight=100
-    //% blockGap=10
-    //% color="#C814B8"
-    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Car_Big(value1: number, value2: number, value3: number): void {
+    
 
-        let R = value1 * 16;
-        let G = value2 * 16;
-        let B = value3 * 16;
+ 
 
-        if (R > 4096)
-            R = 4095;
-        if (G > 4096)
-            G = 4095;
-        if (B > 4096)
-            B = 4095;
-
-        setPwm(0, 0, R);
-        setPwm(1, 0, G);
-        setPwm(2, 0, B);
-
-    }
-
-    //% blockId=cbit_RGB_Car_Program block="七彩流水灯"
-    //% weight=99
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Car_Program(): neopixel.Strip {
-         
-        if (!yahStrip) {
-            yahStrip = neopixel.create(DigitalPin.P16, 3, NeoPixelMode.RGB);
-        }
-        return yahStrip;  
-    }
-
-
-    //% blockId=cbit_ultrasonic_car block="超声波传感器距离（cm）"
-    //% color="#006400"
-    //% weight=98
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic_Car(): number {
-
-        // send pulse
-        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-        control.waitMicros(2);
-        pins.digitalWritePin(DigitalPin.P14, 1);
-        control.waitMicros(10);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-
-        // read pulse
-        let d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 43200);
-        return d / 58;
-    }
-
+    
+    
     //% blockId=cbit_Music_Car block="Aibot小车播放音乐|%index"
     //% weight=97
     //% blockGap=10
@@ -952,51 +1069,7 @@ namespace Aibot_小车类 {
     //     return temp;
 
     // }
-    //% blockId=cbit_Line_Sensor block="巡线传感器|检测到 %direct|为 %value"
-    //% weight=94
-    //% blockGap=10
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Line_Sensor(direct: enPos, value: enLineState): boolean {
-
-        let temp: boolean = false;
-
-        switch (direct) {
-            case enPos.LeftState: {
-                if (pins.analogReadPin(AnalogPin.P1) < 500) {
-                    if (value == enLineState.White) {
-                        temp = true;
-                    }
-                    setPwm(7, 0, 4095);
-                }
-                else {
-                    if (value == enLineState.Black) {
-                        temp = true;
-                    }
-                    setPwm(7, 0, 0);
-                }
-                break;
-            }
-
-            case enPos.RightState: {
-                if (pins.analogReadPin(AnalogPin.P2) < 500) {
-                    if (value == enLineState.White) {
-                        temp = true;
-                    }
-                    setPwm(6, 0, 4095);
-                }
-                else {
-                    if (value == enLineState.Black) {
-                        temp = true;
-                    }
-                    setPwm(6, 0, 0);
-                }
-                break;
-            }
-        }
-        return temp;
-
-    }
+   
     //% blockId=cbit_CarCtrl block="控制Aibot小车|%index"
     //% weight=93
     //% blockGap=10
