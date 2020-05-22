@@ -424,7 +424,7 @@ namespace Aibot_传感器类 {
 //     }
     
     //% blockId=cbit_ultrasonic_car block="超声波传感器距离（cm）"
-    //% color="#006400"
+    //% color="#87CEEB"
     //% weight=98
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -515,7 +515,7 @@ namespace Aibot_传感器类 {
     //% blockId=cbit_Line_Sensor block="巡线传感器|检测到 %direct|为 %value"
     //% weight=94
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Line_Sensor(direct: enPos, value: enLineState): boolean {
 
@@ -615,7 +615,7 @@ namespace Aibot_音乐类 {
     //% blockId=cbit_Music_Car block="Aibot小车播放音乐|%index"
     //% weight=97
     //% blockGap=10
-    //% color="#006400"
+    //% color="#D2691E"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music_Car(index: enMusic): void {
         switch (index) {
