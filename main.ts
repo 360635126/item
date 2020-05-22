@@ -8,7 +8,7 @@ load dependency
 
 
 //% color="#C814B8" weight=25 icon="\uf1d4"
-namespace Aibot_显示类 {
+namespace Aibot_灯光{
     
     // export enum enColor {
 
@@ -331,7 +331,7 @@ namespace Aibot_显示类 {
  ****************************************************************************************************************************************/
 
 //% color="#87CEEB" weight=24 icon="\uf1b6"
-namespace Aibot_传感器类 {
+namespace Aibot_传感器 {
 
 //     export enum enVoice {
 //         //% blockId="Voice" block="有声音"
@@ -445,15 +445,15 @@ namespace Aibot_传感器类 {
 
     export enum enPos {
 
-        //% blockId="LeftState" block="左边状态"
+        //% blockId="LeftState" block="左边"
         LeftState = 1,
-        //% blockId="RightState" block="右边状态"
+        //% blockId="RightState" block="右边"
         RightState = 0
     }
     export enum enLineState {
-        //% blockId="White" block="白线"
+        //% blockId="White" block="白"
         White = 0,
-        //% blockId="Black" block="黑线"
+        //% blockId="Black" block="黑"
         Black = 1
 
     }
@@ -566,7 +566,7 @@ namespace Aibot_传感器类 {
  ****************************************************************************************************************************************/
 
 //% color="#D2691E" weight=22 icon="\uf001"
-namespace Aibot_音乐类 {
+namespace Aibot_声音 {
    
     export enum enMusic {
 
@@ -627,7 +627,7 @@ namespace Aibot_音乐类 {
  *    小车类*****************************************************************************************************************************
  ****************************************************************************************************************************************/
 //% color="#006400" weight=20 icon="\uf1b9"
-namespace Aibot_小车类 {
+namespace Aibot_运动 {
 
     const PCA9685_ADD = 0x41
     const MODE1 = 0x00
