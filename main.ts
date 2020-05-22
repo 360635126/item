@@ -567,26 +567,7 @@ namespace Aibot_传感器类 {
 
 //% color="#D2691E" weight=22 icon="\uf001"
 namespace Aibot_音乐类 {
-    // export enum enBuzzer {
-
-    //     //% blockId="NoBeep" block="响"
-    //     NoBeep = 0,
-    //     //% blockId="Beep" block="不响"
-    //     Beep
-    // }
-
-    // //% blockId=cbit_Buzzer block="有源蜂鸣器|引脚 %pin|值 %value"
-    // //% weight=100
-    // //% blockGap=10 
-    // //% color="#D2691E"
-    // //% value.min=0 value.max=1
-    // //% name.fieldEditor="gridpicker" name.fieldOptions.columns=8
-    // export function Buzzer(pin: DigitalPin, value: enBuzzer): void {
-
-    //     pins.setPull(pin, PinPullMode.PullNone);
-    //     pins.digitalWritePin(pin, value);
-
-    // }
+   
     export enum enMusic {
 
         dadadum = 0,
@@ -1268,6 +1249,27 @@ namespace Aibot_小车类 {
 
 // //% color="#0000CD" weight=21 icon="\uf185"
 // namespace Aibot_电机类 {
+    // export enum enBuzzer {
+
+    //     //% blockId="NoBeep" block="响"
+    //     NoBeep = 0,
+    //     //% blockId="Beep" block="不响"
+    //     Beep
+    // }
+
+    // // % blockId=cbit_Buzzer block="有源蜂鸣器|引脚 %pin|值 %value"
+    // // % weight=100
+    // // % blockGap=10 
+    // // % color="#D2691E"
+    // // % value.min=0 value.max=1
+    // // % name.fieldEditor="gridpicker" name.fieldOptions.columns=8
+    // export function Buzzer(pin: DigitalPin, value: enBuzzer): void {
+
+    //     pins.setPull(pin, PinPullMode.PullNone);
+    //     pins.digitalWritePin(pin, value);
+
+    // }
+
 
 //     //% blockId=cbit_Fan block="风扇|引脚 %pin|速度 %value"
 //     //% weight=100
