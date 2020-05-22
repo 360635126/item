@@ -325,7 +325,7 @@ namespace Aibot_灯光{
     }
 
 
-    export class Strip {
+    
         buf: Buffer;
         pin: DigitalPin;
         // TODO: encode as bytes instead of 32bit
@@ -343,7 +343,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
-        showColor(rgb: number) {
+        export function showColor(rgb: number) {
             rgb = rgb >> 0;
             this.setAllRGB(rgb);
             this.show();
@@ -358,7 +358,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=85 blockGap=8
         //% parts="neopixel"
-        showRainbow(startHue: number = 1, endHue: number = 360) {
+        export function showRainbow(startHue: number = 1, endHue: number = 360) {
             if (this._length <= 0) return;
 
             startHue = startHue >> 0;
@@ -426,7 +426,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% icon="\uf080"
         //% parts="neopixel"
-        showBarGraph(value: number, high: number): void {
+        export function showBarGraph(value: number, high: number): void {
             if (high <= 0) {
                 this.clear();
                 this.setPixelColor(0, NeoPixelColors.Yellow);
@@ -465,7 +465,7 @@ namespace Aibot_灯光{
         //% blockGap=8
         //% weight=80
         //% parts="neopixel" advanced=true
-        setPixelColor(pixeloffset: number, rgb: number): void {
+        export function setPixelColor(pixeloffset: number, rgb: number): void {
             this.setPixelRGB(pixeloffset >> 0, rgb >> 0);
         }
 
@@ -478,7 +478,7 @@ namespace Aibot_灯光{
         //% blockGap=8
         //% weight=5
         //% parts="neopixel" advanced=true
-        setMatrixWidth(width: number) {
+        export function setMatrixWidth(width: number) {
             this._matrixWidth = Math.min(this._length, width >> 0);
         }
 
@@ -493,7 +493,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=4
         //% parts="neopixel" advanced=true
-        setMatrixColor(x: number, y: number, rgb: number) {
+        export function setMatrixColor(x: number, y: number, rgb: number) {
             if (this._matrixWidth <= 0) return; // not a matrix, ignore
             x = x >> 0;
             y = y >> 0;
@@ -514,7 +514,7 @@ namespace Aibot_灯光{
         //% blockGap=8
         //% weight=80
         //% parts="neopixel" advanced=true
-        setPixelWhiteLED(pixeloffset: number, white: number): void {
+        export function setPixelWhiteLED(pixeloffset: number, white: number): void {
             if (this._mode === NeoPixelMode.RGBW) {
                 this.setPixelW(pixeloffset >> 0, white >> 0);
             }
@@ -527,7 +527,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=79
         //% parts="neopixel"
-        show() {
+        export function show() {
             // only supported in beta
             // ws2812b.setBufferMode(this.pin, this._mode);
             ws2812b.sendBuffer(this.buf, this.pin);
@@ -541,7 +541,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=76
         //% parts="neopixel"
-        clear(): void {
+        export function clear(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             this.buf.fill(0, this.start * stride, this._length * stride);
         }
@@ -552,7 +552,7 @@ namespace Aibot_灯光{
         //% blockId="neopixel_length" block="%strip|length" blockGap=8
         //% strip.defl=strip
         //% weight=60 advanced=true
-        length() {
+        export function length() {
             return this._length;
         }
 
@@ -564,7 +564,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=59
         //% parts="neopixel" advanced=true
-        setBrightness(brightness: number): void {
+        export function setBrightness(brightness: number): void {
             this.brightness = brightness & 0xff;
         }
 
@@ -575,7 +575,7 @@ namespace Aibot_灯光{
         //% strip.defl=strip
         //% weight=58
         //% parts="neopixel" advanced=true
-        easeBrightness(): void {
+        export function easeBrightness(): void {
             const stride = this._mode === NeoPixelMode.RGBW ? 4 : 3;
             const br = this.brightness;
             const buf = this.buf;
@@ -761,7 +761,7 @@ namespace Aibot_灯光{
             let buf = this.buf;
             buf[pixeloffset + 3] = white;
         }
-    }
+    
 
    
 }
