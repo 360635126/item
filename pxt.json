@@ -4,7 +4,7 @@
     "description": "Extension for ZYRobot micro:bit",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
+        "core": "*"
         
 	
 
